@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import Messages from './dbMessages.js';
 import Pusher from 'pusher';
+import cors from 'cors'
 
 //App config
 const app = express();
@@ -23,6 +24,8 @@ pusher.trigger("my-channel", "my-event", {
 
 //middleware
 app.use(express.json());
+//Sets headers for app
+app.use(cors());
 
 //Allows request to come from any endpoint
 app.use((request, response, next) => {
