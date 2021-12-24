@@ -8,4 +8,4 @@ const messageAppSchema = mongoose.Schema({
 });
 
 //Collection
-export default mongoose.model('messageContents', messageAppSchema);
+export default mongoose.model('messagecontents', messageAppSchema);

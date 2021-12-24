@@ -12,15 +12,12 @@ const port = process.env.port || 9000;
 //The purpose of pusher is to make mongodb become real-time
 const pusher = new Pusher({
   appId: "1321644",
-  key: "05d06724ff39336a318a",
-  secret: "1c6aef4480d290123147",
+  key: "0a26ca98fc33b1081a53",
+  secret: "90e2dabd14117eab793d",
   cluster: "mt1",
   useTLS: true
 });
 
-pusher.trigger("my-channel", "my-event", {
-  message: "hello world"
-});
 
 //middleware
 app.use(express.json());
@@ -28,10 +25,10 @@ app.use(express.json());
 app.use(cors());
 
 //Allows request to come from any endpoint
-app.use((request, response, next) => {
-    response.setHeader("Access-Control-Allow-Origin", "*");
-    response.setHeader("Accesss-Control-Allow-Headers", "*");
-});
+// app.use((request, response, next) => {
+//     response.setHeader("Access-Control-Allow-Origin", "*");
+//     response.setHeader("Accesss-Control-Allow-Headers", "*");
+// });
 
 
 //Database config
@@ -47,7 +44,7 @@ db.once('open', () => {
     console.log("DB connected");
 
     //Collection
-    const msgCollection = db.collection("messageContents");
+    const msgCollection = db.collection("messagecontents");
     const changeStream = msgCollection.watch();
 
     changeStream.on('change', (change) => {
